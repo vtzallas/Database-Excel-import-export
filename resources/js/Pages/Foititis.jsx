@@ -69,7 +69,7 @@ const Foititis = (foitites, filters, tmima) => {
            <InertiaLink 
                href="/"
                className="btn btn-primary">
-               <img src={'./home.png'} />
+                <img src={'../home.png'} />
            </InertiaLink>
            
            <InertiaLink href="/create" className="btn btn-primary">Εισαγωγή Νέου Φοιτητή</InertiaLink>

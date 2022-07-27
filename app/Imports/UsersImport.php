@@ -34,6 +34,7 @@ class UsersImport implements ToModel, WithHeadingRow
 
          $imerominia_enarxis = date('Y-m-d H:i:s', strtotime($row["ENARXI PRAKTIKIS ASKISIS"]));
          $imerominia_lixis = date('Y-m-d H:i:s', strtotime($row["LIKSI PRAKTIKIS ASKISIS"]));
+         
         return new Foititis([
            'tmima_id' => $row["TMIMA"],
             'am'     => $row["AM"],

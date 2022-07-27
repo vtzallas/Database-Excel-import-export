@@ -1,7 +1,7 @@
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink } from '@inertiajs/inertia-react';
-import { set } from 'lodash';
 import React, { Fragment, useEffect, useState } from 'react'
+import { Navbar } from 'react-bootstrap';
 import Select from 'react-select';
 
 const Edit = ({foititis,tmima,gender,foreas,success,error}) => {
@@ -89,7 +89,18 @@ const Edit = ({foititis,tmima,gender,foreas,success,error}) => {
         
         <Fragment>
          
-            <InertiaLink href="/" className="btn btn-primary">Σύνολο Φοιτητών</InertiaLink>
+         <Navbar bg="primary" variant="dark">
+           
+           <InertiaLink 
+               href="/"
+               className="btn btn-primary">
+               <img src={'	http://127.0.0.1:8000/home.png'} />
+           </InertiaLink>
+           
+           <InertiaLink href="/create" className="btn btn-primary">Εισαγωγή Νέου Φοιτητή</InertiaLink>
+           <InertiaLink href="/file-import-export" className="btn btn-primary">Εισαγωγή Φοιτητών μέσω Excel</InertiaLink>
+           </Navbar>
+
             <h1>Eπικαιροποίηση στοιχείων</h1>
             {success && <div className="alert alert-success">{success}</div>}
             
