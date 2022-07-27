@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import Button from '@/Components/Button';
 import Checkbox from '@/Components/Checkbox';
 import Guest from '@/Layouts/Guest';
@@ -29,9 +29,12 @@ export default function Login({ status, canResetPassword }) {
 
         post(route('login'));
     };
-
+   
     return (
-        <Guest>
+        <Fragment>
+            <div className="container">
+    <div className="row d-flex justify-content-center">
+      <div className="col-md-4">
             <Head title="Log in" />
 
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
@@ -39,28 +42,28 @@ export default function Login({ status, canResetPassword }) {
             <ValidationErrors errors={errors} />
 
             <form onSubmit={submit}>
-                <div>
+                <div className='form-group'>
                     <Label forInput="email" value="Email" />
 
                     <Input
                         type="text"
                         name="email"
                         value={data.email}
-                        className="mt-1 block w-full"
+                        className="form-control"
                         autoComplete="username"
                         isFocused={true}
                         handleChange={onHandleChange}
                     />
                 </div>
 
-                <div className="mt-4">
+                <div className='form-group'>
                     <Label forInput="password" value="Password" />
 
                     <Input
                         type="password"
                         name="password"
                         value={data.password}
-                        className="mt-1 block w-full"
+                        className="form-control"
                         autoComplete="current-password"
                         handleChange={onHandleChange}
                     />
@@ -84,11 +87,14 @@ export default function Login({ status, canResetPassword }) {
                         </Link>
                     )}
 
-                    <Button className="ml-4" processing={processing}>
+                    <Button className="btn btn-primary" processing={processing}>
                         Log in
                     </Button>
                 </div>
             </form>
-        </Guest>
+            </div>
+            </div>
+            </div>
+        </Fragment>
     );
 }

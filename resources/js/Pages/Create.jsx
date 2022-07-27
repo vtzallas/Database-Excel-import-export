@@ -2,7 +2,9 @@ import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink } from '@inertiajs/inertia-react';
 import React, { Fragment, useState } from 'react'
 import Select from 'react-select';
-import { Navbar } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 const Create = ({tmima,foreas,gender,errors}) => {
 
@@ -61,14 +63,21 @@ let genders=gender.map((gender)=>{
      </div>
      <Navbar bg="primary" variant="dark">
            
+     <Nav className='me-auto'>
            <InertiaLink 
                href="/"
                className="btn btn-primary">
-               <img src={'./home.png'} />
+                <img src={'../home.png'} />
            </InertiaLink>
            
            <InertiaLink href="/create" className="btn btn-primary">Εισαγωγή Νέου Φοιτητή</InertiaLink>
            <InertiaLink href="/file-import-export" className="btn btn-primary">Εισαγωγή Φοιτητών μέσω Excel</InertiaLink>
+           </Nav>
+           <Nav className="ml-auto">
+           <DropdownButton id="dropdown-basic-button" align="end" title={foitites.user }>
+            <Dropdown.Item className="text-center"> <InertiaLink as="button" method="post" href={route('logout')} className="btn btn-primary">Εξοδος</InertiaLink> </Dropdown.Item>
+            </DropdownButton>
+            </Nav>
            </Navbar>
             <h1>Εισαγωγή Νέου Φοιτητή</h1>
             <div className='card'>

@@ -1,19 +1,17 @@
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import React, { Fragment, useEffect, useState } from 'react'
-import { Navbar } from 'react-bootstrap';
+import {  Navbar } from 'react-bootstrap';
 import Select from 'react-select';
 import * as XLSX from 'xlsx';
 import { format } from 'date-fns'
-
-const Foititis = (foitites, filters, tmima) => {
-    const { flash } = usePage().props
+import Nav from 'react-bootstrap/Nav';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+const Foititis = (foitites, filters, tmima, user) => {
+    const  {flash}  = usePage().props
     let i = 1;
     const [filter, setFilter] = useState(foitites.filters || '');
-   
-    // const [tmima_id, setTmima_id] = useState('');
-
-
     let tmimata = foitites.tmima.map((tmima) => {
         return {
             label: tmima.name,
@@ -52,8 +50,7 @@ const Foititis = (foitites, filters, tmima) => {
           }))
         var wb = XLSX.utils.book_new(),   
         ws = XLSX.utils.json_to_sheet((customHeadings)) ;
-        
-
+        bold = wb.add_format({'bold': True})
         XLSX.utils.book_append_sheet(wb,ws,"MySheet1");
 
         XLSX.writeFile(wb, "Foitites.xlsx");
@@ -65,7 +62,8 @@ const Foititis = (foitites, filters, tmima) => {
         
             <div >
             <Navbar bg="primary" variant="dark">
-           
+            
+           <Nav className='me-auto'>
            <InertiaLink 
                href="/"
                className="btn btn-primary">
@@ -74,8 +72,21 @@ const Foititis = (foitites, filters, tmima) => {
            
            <InertiaLink href="/create" className="btn btn-primary">Εισαγωγή Νέου Φοιτητή</InertiaLink>
            <InertiaLink href="/file-import-export" className="btn btn-primary">Εισαγωγή Φοιτητών μέσω Excel</InertiaLink>
+           </Nav>
+           <Nav className="ml-auto">
+            <div style={{color: "white"}}>
+                
+            <DropdownButton id="dropdown-basic-button" align="end" title={foitites.user }>
+            <Dropdown.Item className="text-center"> <InertiaLink as="button" method="post" href={route('logout')} className="btn btn-primary">Εξοδος</InertiaLink> </Dropdown.Item>
+            </DropdownButton>
+           
+            
+            </div>
+           
+            </Nav>
+            
            </Navbar>
-        
+            
             {flash.message && (
             <div className="alert alert-success alert alert-dismissible">
                     {flash.message}
@@ -104,7 +115,7 @@ const Foititis = (foitites, filters, tmima) => {
                     </div>
 
                     <div class="form-group">
-
+                   
                         <div className=""><strong>Ημερομηνία Έναρξης</strong></div>
 
                         <div className="input-group">
@@ -172,8 +183,8 @@ const Foititis = (foitites, filters, tmima) => {
                                 <td className=""> {foititis.email}</td>
                                 <td className=""> {foititis.afm}</td>
                                 <td className=""> {foititis.amka}</td>
-                                <td className=""> {foititis.imerominia_enarxis}</td>
-                                <td className=""> {foititis.imerominia_lixis}</td>
+                                <td className=""> {format(new Date(foititis.imerominia_enarxis), 'dd/MM/yyyy') }</td>
+                                <td className=""> {format(new Date(foititis.imerominia_lixis), 'dd/MM/yyyy') }</td>
                                 <td className=""> {foititis.tmima.name}</td>
                                 <td className=""> {foititis.foreas.name}</td>
                                 <td className=""> {foititis.gender.name}</td>

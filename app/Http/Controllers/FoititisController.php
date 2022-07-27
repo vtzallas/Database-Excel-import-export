@@ -45,13 +45,14 @@ class FoititisController extends Controller
         // if (isset($searchQuery['afm'])&& $searchQuery['afm']!= null) {
         //     $foitites->where('afm', 'LIKE', '%' . $searchQuery['afm'] . '%');
         // }
+        $user = auth()->user()->name;
         
-       
         return Inertia::render('Foititis',
          [
           'foitites' => $foitites,
           'filters' => $searchQuery ,
-          'tmima' => $tmima
+          'tmima' => $tmima,
+          'user' => $user
           
         ] );
     }

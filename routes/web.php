@@ -25,6 +25,7 @@ use Inertia\Inertia;
 //     ]);
 // });
 
+Route::group(['middleware' => ['auth', 'verified']], function() {
 Route::get('/',[FoititisController::class,'index'])->name('index');;
 Route::get('/create',[FoititisController::class,'create']);
 Route::post('/save',[FoititisController::class,'store']);
@@ -34,7 +35,7 @@ Route::get('/delete/{id}',[FoititisController::class,'destroy'])->name('delete')
 Route::get('/query',[FoititisController::class,'index']);
 Route::get('file-import-export', [FoititisController::class, 'fileImportExport']);
 Route::post('file-import', [FoititisController::class, 'fileImport'])->name('import');
-
+});
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');

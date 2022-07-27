@@ -1,8 +1,10 @@
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink } from '@inertiajs/inertia-react';
 import React, { Fragment, useEffect, useState } from 'react'
-import { Navbar } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 import Select from 'react-select';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 const Edit = ({foititis,tmima,gender,foreas,success,error}) => {
 
@@ -91,14 +93,21 @@ const Edit = ({foititis,tmima,gender,foreas,success,error}) => {
          
          <Navbar bg="primary" variant="dark">
            
+         <Nav className='me-auto'>
            <InertiaLink 
                href="/"
                className="btn btn-primary">
-               <img src={'	http://127.0.0.1:8000/home.png'} />
+                <img src={'	http://127.0.0.1:8000/home.png'} />
            </InertiaLink>
            
            <InertiaLink href="/create" className="btn btn-primary">Εισαγωγή Νέου Φοιτητή</InertiaLink>
            <InertiaLink href="/file-import-export" className="btn btn-primary">Εισαγωγή Φοιτητών μέσω Excel</InertiaLink>
+           </Nav>
+           <Nav className="ml-auto">
+           <DropdownButton id="dropdown-basic-button" align="end" title={foitites.user }>
+            <Dropdown.Item className="text-center"> <InertiaLink as="button" method="post" href={route('logout')} className="btn btn-primary">Εξοδος</InertiaLink> </Dropdown.Item>
+            </DropdownButton>
+            </Nav>
            </Navbar>
 
             <h1>Eπικαιροποίηση στοιχείων</h1>

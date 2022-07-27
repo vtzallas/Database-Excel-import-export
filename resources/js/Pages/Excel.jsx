@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react'
-import { Navbar } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 import { usePage } from '@inertiajs/inertia-react';
 import { InertiaLink} from '@inertiajs/inertia-react';
 import { useForm } from '@inertiajs/inertia-react'
 import { Inertia } from '@inertiajs/inertia';
 import Form  from 'react-bootstrap/Form';
-
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 
 const Excel = () => {
@@ -31,14 +32,22 @@ const Excel = () => {
        
     <Navbar bg="primary" variant="dark">
            
-           <InertiaLink style={{color: "red"}}
+    <Nav className='me-auto'>
+           <InertiaLink 
                href="/"
                className="btn btn-primary">
-               <img src={'./home.png'} />
+                <img src={'../home.png'} />
            </InertiaLink>
            
            <InertiaLink href="/create" className="btn btn-primary">Εισαγωγή Νέου Φοιτητή</InertiaLink>
            <InertiaLink href="/file-import-export" className="btn btn-primary">Εισαγωγή Φοιτητών μέσω Excel</InertiaLink>
+           </Nav>
+           <Nav className="ml-auto">
+           <DropdownButton id="dropdown-basic-button" align="end" title={foitites.user }>
+            <Dropdown.Item className="text-center"> <InertiaLink as="button" method="post" href={route('logout')} className="btn btn-primary">Εξοδος</InertiaLink> </Dropdown.Item>
+            </DropdownButton>
+            </Nav>
+            
            </Navbar>
 
     <div className="container mt-5 text-center">

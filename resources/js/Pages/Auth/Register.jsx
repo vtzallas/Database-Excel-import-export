@@ -12,6 +12,7 @@ export default function Register() {
         email: '',
         password: '',
         password_confirmation: '',
+        role:'user'
     });
 
     useEffect(() => {
@@ -23,6 +24,12 @@ export default function Register() {
     const onHandleChange = (event) => {
         setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
     };
+
+   const handleOptionChange = (e) => {
+        setData({
+          role: e.target.value
+        });
+      }
 
     const submit = (e) => {
         e.preventDefault();
@@ -93,12 +100,31 @@ export default function Register() {
                     />
                 </div>
 
+                <div className="radio">
+                         <label>
+                        <input type="radio" value="user" 
+                            checked={data.role === 'user'} 
+                            onChange={handleOptionChange} />
+                                User
+                            </label>
+                                </div>
+                             <div className="radio">
+                                    <label>
+        <               input type="radio" value="admin" 
+                      checked={data.role === 'admin'} 
+                      onChange={handleOptionChange} />
+             Admin
+      </label>
+    </div>
+                
+
+
                 <div className="flex items-center justify-end mt-4">
                     <Link href={route('login')} className="underline text-sm text-gray-600 hover:text-gray-900">
                         Already registered?
                     </Link>
 
-                    <Button className="ml-4" processing={processing}>
+                    <Button className="btn btn-primary" processing={processing}>
                         Register
                     </Button>
                 </div>
